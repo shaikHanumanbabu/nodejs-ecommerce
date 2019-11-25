@@ -1,0 +1,54 @@
+<%- include('header.ejs') %>
+<div id="content">
+  <header>
+    <h2 class="page-title text-capitalize">create new product</h2>
+  </header>
+  <div id="content-inner">
+    <div class="form-wrapper">
+      <form method="post" action="addproduct" enctype="multipart/form-data">
+        <div class="form-group">
+          <label class="sr-only text-capitalize">title</label>
+          <input type="text" name="title" class="form-control" placeholder="Enter Product Title" value="<% if(product_details) {%><%= product_details.title  %><%} %>">
+        </div>
+        <input type="hidden" name="product_id"value="<% if(product_details) {%><%= product_details._id  %><%} %>" >
+        <div class="form-group">
+          <label class="sr-only text-capitalize">Featured Image</label>
+          <input type="file" name="images_files" class="form-control">
+          <% if(product_details.featured_image) {%>
+            <img src="/uploads/<%= product_details.featured_image%>" alt="img not found" class="img-thumbnail" style="height: 59px;">
+          <% } %>
+        </div>
+        <div class="form-group">
+          <label class="sr-only text-capitalize">Price</label>
+          <input type="text" name="price" class="form-control" placeholder="Enter Price" value="<% if(product_details) { %><%= product_details.price%><% } %>">
+        </div>
+        <div class="form-group">
+          <label class="sr-only text-capitalize">Image Gallery</label>
+          <input type="file" name="images_files" class="form-control" multiple>
+          <% if(product_details.gallery_images) { 
+            
+          for(var i=0; i< product_details.gallery_images.length; i++) {  
+          %>
+            <img src="/uploads/<%= product_details.gallery_images[i]%>" alt="img not found" style="height: 59px;"  class="img-thumbnail">
+          <% } }%>
+        </div>
+        <div class="form-group">
+          <label class="sr-only text-capitalize" >articles</label>
+          <textarea class="form-control" placeholder="article" name="article" id="summernote"><% if(product_details) { %><%= product_details.featured_image%><% } %></textarea>
+        </div>
+        
+        <div class="clearfix">
+          <button type="submit" class="btn btn-primary pull-right">save / publish</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<div class="row" >
+  <footer id="admin-footer" class="clearfix">
+    <div class="pull-left"><b>copy</b>&copy;2019</div>
+    <div class="pull-right">admin system</div>
+  </footer>
+</div>
+<%- include('footer.ejs') %>

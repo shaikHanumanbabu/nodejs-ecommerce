@@ -1,0 +1,51 @@
+<%- include('header.ejs') %>
+<div class="container">
+  <h5>Product Infomation</h5> 
+  <input id="myInput" type="text" placeholder="Search..">           
+  <table class="table table-hover">
+    <thead>
+      <tr>
+        <th>S.No</th>
+        <th>Product Name</th>
+        <th>Product Price</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody id="myTable">
+        <% var i=1; for(x of products) { %>
+        <tr id="<%= x._id %>">
+        <td><%=i %></td>
+        <td><%= x.title %></td>
+        <td>Rs <span><%= x.price %></span></td>
+        <td><a href="addArticle/<%= x._id %>">Edit</a>   <a href="javascript:deleteProduct('<%= x._id %>');" onclick="return confirm('Are you sure You want to delete')">Delete</a></td>
+        </tr>
+      <% i++; } %>
+    </tbody>
+  </table>
+</div>
+<%- include('footer.ejs') %>
+<script>
+  $(document).ready(function(){
+  $("#myInput").on("keyup", function() {
+    var value = $(this).val().toLowerCase();
+    $("#myTable tr").filter(function() {
+      $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+    });
+  });
+});
+  function deleteProduct(productId) {
+    $('#'+productId).remove()
+    $.ajax({
+      method:'delete',
+      url:'deleteproduct',
+      data :{productId:productId},
+      success:function(result) {
+        console.log(result)
+      },
+      error:function(jqXHR) {
+        console.log(jqXHR);
+        
+      }
+    })
+  }
+</script>

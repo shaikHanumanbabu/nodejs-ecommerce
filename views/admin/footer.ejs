@@ -1,0 +1,32 @@
+</div>
+</div>
+</div>
+
+
+
+</body>
+</html>
+<script  src="/admin/vendor/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="/admin/vendor/dist/summernote.min.js"></script>
+<script src="/admin/js/default.js"></script>
+<script  src="/admin/vendor/chosen.jquery.min.js"></script>
+<script type="text/javascript" src="/admin/vendor/dist/summernote.min.js"></script>
+<script type="text/javascript">
+var config = {
+'.chosen-select':{},
+'.chosen-select-deselect':{allow_single_deselect:true},
+'chosen-select-no-single':{disable_search_threshold:10},
+'chosen-select-no-result':{no_results_text:'Opps,nothing'},
+'chosen-select-width':{width:'95%'}
+
+}
+for(var selector in config)
+{
+$(selector).chosen(config[selector]);
+}
+</script>
+<script>
+$(document).ready(function() {
+  $('#summernote').summernote();
+});
+</script>

@@ -1,0 +1,28 @@
+<%- include('header.ejs') %>
+<div class="container">
+    <% if(singleProduct) { %>
+    <div class="row">
+        
+        <div class="col-md-6">
+            <img src="/uploads/<%= singleProduct.featured_image%>" alt="image not found" style="
+            height: 367px;
+        ">
+        </div>
+        <div class="col-md-6">
+            <%= singleProduct.product_description%>
+            <br>
+            <!-- <button type="button" class="btn btn-primary">Add to Cart</button> -->
+            <form action="/addCart" method="post">
+                <input type="hidden" name="product_id" value="<%= singleProduct._id%>">
+                <input type="hidden" name="product_name" value="<%= singleProduct.title%>">
+                <input type="hidden" name="product_qty" value="1">
+                <input type="hidden" name="product_price" value="<%= singleProduct.price%>">
+                <!-- <a href="/addCart/<%= singleProduct._id%>" class="btn btn-info">Add to Cart</a> -->
+                <input type="submit" value="Add To cart" class="btn btn-info">
+
+            </form>
+        </div>
+    </div>
+</div>
+<% } %>
+<%- include('footer.ejs') %>

@@ -1,0 +1,37 @@
+<%- include('header.ejs') %>
+<div class="container">
+    <div class="row">
+        <% if(products) { for (x of products) {%>
+        <div class="col-md-3">
+            <div class="thumb-wrapper">
+                <div class="img-box">
+                    <img src="/uploads/<%= x.featured_image %>" class="img-responsive img-fluid" alt="">
+                </div>
+                <div class="thumb-content">
+                    <h4><%= x.title %></h4>
+                    <p class="item-price"> <span>$<%= x.price %>.00</span></p>
+                    <div class="star-rating">
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star"></i></li>
+                            <li class="list-inline-item"><i class="fa fa-star-half-o"></i></li>
+                        </ul>
+                    </div>
+                    <a href="/product_details/<%= x._id %>" class="btn btn-primary" target="_blank">View Details</a>
+                </div>						
+            </div>
+        </div>
+       <% }} %>
+    </div>
+</div>
+<div class="container">
+    <ul class="pagination">
+        <% for(var x =1; x<=totalPageCount; x++) {%>
+        <li class="<% if(pageNumber == x) { %><%= "active" %><% } %>"><a href="?page=<%= x%>" ><%= x%></a></li>
+        <% } %>
+      </ul>
+</div>
+
+<%- include('footer.ejs') %>
